@@ -1,0 +1,16 @@
+{
+  "name": "image-resizer",
+  "version": "1.0.0",
+  "description": "Image Resizer",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edchel Stephen Nini",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^29.1.6",
+    "resize-img": "^2.0.0",
+    "toastify-js": "^1.12.0"
+  }
+}
