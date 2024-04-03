@@ -15,26 +15,46 @@ function createMainWindow() {
     })
 
     if (isDev) {
-        console.log(isDev, "isDev")
+
         mainWindow.webContents.openDevTools();
     }
 
     mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
 }
 
+function createAboutWindow() {
+    const aboutWindow = new BrowserWindow({
+        title: 'About',
+        width: 300,
+        height: 300,
+    })
+
+    aboutWindow.loadFile(path.join(__dirname, './renderer/about.html'))
+}
+
 const menu = [
-    {
-        label: 'File',
+    ...(isMac ? [{
+        label: app.name,
         submenu: [
             {
-                label: 'Quit',
-                click: () => {
-                    app.quit();
-                },
-                accelerator: 'CmdOrCtrl+W'
+                label: 'About',
+                click: createAboutWindow
             }
         ]
-    }
+    }] : []),
+    {
+        role: 'fileMenu'
+    },
+    ...(!isMac ? [{
+        label: 'Help',
+        submenu: [
+            {
+                label: 'About',
+                click: createAboutWindow
+            }
+
+        ]
+    }] : [])
 ]
 
 app.whenReady().then(
